@@ -218,6 +218,11 @@ input[type="search"]::placeholder{color:rgba(170,182,204,.7)}
   overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
 }
 
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
 @media (max-width: 980px){
   .hero-grid, .two-col, .contact{grid-template-columns: 1fr}
   .hero h1{font-size:36px}

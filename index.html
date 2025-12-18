@@ -1,243 +1,253 @@
-const USERNAME = "IloveChanel";
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Michelle Vance | Developer Portfolio</title>
+  <meta name="description" content="Web Developer / Front-End Developer with AI + Data foundations. Projects, GitHub, and contact." />
 
-// Put your BEST repos here to show them first (exact repo names)
-const FEATURED_REPOS = [
-  // "portfolio",
-  // "your-best-project",
-];
+  <link rel="preconnect" href="https://api.github.com" />
+  <link rel="stylesheet" href="styles.css" />
 
-const projectsGrid = document.getElementById("projectsGrid");
-const statusEl = document.getElementById("status");
-const searchEl = document.getElementById("search");
-const filterEl = document.getElementById("filter");
-const refreshBtn = document.getElementById("refresh");
+  <!-- Open Graph -->
+  <meta property="og:title" content="Michelle Vance | Developer Portfolio" />
+  <meta property="og:description" content="Projects, skills, and ways to connect." />
+  <meta property="og:type" content="website" />
+</head>
 
-document.getElementById("year").textContent = new Date().getFullYear();
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-function setStatus(msg) {
-  statusEl.textContent = msg || "";
-}
-
-function fmtDate(iso) {
-  try {
-    const d = new Date(iso);
-    return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
-  } catch {
-    return "";
-  }
-}
-
-function escapeHtml(str = "") {
-  return str
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function projectCard(repo) {
-  const name = escapeHtml(repo.name);
-  const desc = escapeHtml(repo.description || "No description yet — add one in GitHub repo settings.");
-  const lang = repo.language ? `<span class="badge">${escapeHtml(repo.language)}</span>` : "";
-  const stars = `<span class="badge">★ ${repo.stargazers_count}</span>`;
-  const updated = `<span class="badge">Updated ${fmtDate(repo.pushed_at)}</span>`;
-  const topics = (repo.topics || []).slice(0, 4).map(t => `<span class="badge">#${escapeHtml(t)}</span>`).join("");
-
-  const repoUrl = repo.html_url;
-  const liveUrl = repo.homepage && repo.homepage.startsWith("http") ? repo.homepage : "";
-
-  const liveBtn = liveUrl
-    ? `<a class="btn btn-small btn-ghost" href="${liveUrl}" target="_blank" rel="noreferrer">Live Demo</a>`
-    : "";
-
-  return `
-    <article class="project" data-name="${name.toLowerCase()}" data-lang="${(repo.language||"").toLowerCase()}" data-topics="${(repo.topics||[]).join(" ").toLowerCase()}">
-      <div>
-        <h3>${name}</h3>
-        <p>${desc}</p>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">MV</div>
+        <div>
+          <div class="name">Michelle Vance</div>
+          <div class="tagline">Web Developer • Front-End • Junior Full-Stack (in progress) • AI-focused builder</div>
+        </div>
       </div>
-      <div class="meta">
-        ${lang}
-        ${stars}
-        ${updated}
-        ${topics}
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certificates</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-small" href="https://github.com/IloveChanel" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>Building smart, clean web experiences—with an AI engineer's mindset.</h1>
+          <p class="lead">
+            I'm happiest when I'm creating. I enjoy challenging projects, building bots/automation,
+            and turning big ideas into working products. My long-term goal is to grow into an AI Engineer.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn" href="#projects">View Projects</a>
+            <a class="btn btn-ghost" href="https://www.michelletrendsetter.com" target="_blank" rel="noreferrer">
+              Visit Website
+            </a>
+            <a class="btn btn-ghost" href="#contact">Hire Me</a>
+            <!-- Add your resume PDF to the folder, then uncomment this line -->
+            <!-- <a class="btn btn-ghost" href="./MichelleVance_Resume.pdf" download>📄 Download Resume</a> -->
+          </div>
+
+          <div class="quick-facts">
+            <div class="chip">✅ Available for Hire</div>
+            <div class="chip">Open to: Web Dev • Front-End • Junior Full-Stack</div>
+            <div class="chip">Focus: JavaScript • AI apps • Automation</div>
+            <div class="chip">GitHub: @IloveChanel</div>
+          </div>
+        </div>
+
+        <aside class="card hero-card" aria-label="Highlights">
+          <h2>Highlights</h2>
+          <ul class="checklist">
+            <li>Builder who likes complex problems + creative solutions</li>
+            <li>Strong design instincts from running a self-taught graphics/wrap business</li>
+            <li>Growing toward AI engineering through projects + continuous learning</li>
+          </ul>
+          <div class="divider"></div>
+          <p class="muted">
+            Tip: Set each GitHub repo's <strong>Description</strong>, <strong>Topics</strong>, and optional <strong>Homepage</strong>.
+            This page will display them automatically.
+          </p>
+        </aside>
       </div>
-      <div class="actions">
-        <a class="btn btn-small" href="${repoUrl}" target="_blank" rel="noreferrer">Repo</a>
-        ${liveBtn}
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p class="muted">Auto-loaded from GitHub. Featured projects appear first.</p>
+        </div>
+
+        <div class="toolbar">
+          <div class="search-wrap">
+            <label class="sr-only" for="search">Search projects</label>
+            <input id="search" type="search" placeholder="Search by name, language, topic..." autocomplete="off" />
+          </div>
+          <div class="select-wrap">
+            <label class="sr-only" for="filter">Filter</label>
+            <select id="filter">
+              <option value="all">All</option>
+              <option value="featured">Featured</option>
+              <option value="recent">Recently updated</option>
+              <option value="stars">Most starred</option>
+            </select>
+          </div>
+          <button id="refresh" class="btn btn-small btn-ghost" type="button">Refresh</button>
+        </div>
+
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+
+        <div id="projectsGrid" class="grid" aria-label="Project list"></div>
+
+        <div class="footnote">
+          <a href="https://github.com/IloveChanel?tab=repositories" target="_blank" rel="noreferrer">
+            See all repositories →
+          </a>
+        </div>
       </div>
-    </article>
-  `;
-}
+    </section>
 
-function rankRepos(repos) {
-  const featuredSet = new Set(FEATURED_REPOS.map(r => r.toLowerCase()));
+    <section id="about" class="section alt">
+      <div class="container two-col">
+        <div>
+          <h2>About</h2>
+          <p>
+            I'm a developer with a builder's mindset. I enjoy tough projects, thinking outside the box,
+            and making ideas real through code. I'm happiest when I'm creating—whether that's a web app,
+            an automation bot, or a clean UI that just feels right.
+          </p>
+          <p>
+            Before tech, I built a self-taught graphic design business creating trailer wraps, vehicle wraps,
+            lettering, and vinyl work for trucks and cars. That background sharpened my eye for design and
+            gave me real business experience—so I build with users and outcomes in mind.
+          </p>
+          <p class="muted">
+            I'm looking to join a company where I can grow my skills with a strong team—always learning,
+            always improving, and contributing while leveling up alongside people who build great products.
+          </p>
+        </div>
 
-  return repos
-    .filter(r => !r.fork) // hide forks by default
-    .map(r => ({
-      ...r,
-      _featured: featuredSet.has(r.name.toLowerCase()),
-    }))
-    .sort((a, b) => {
-      // Featured first
-      if (a._featured && !b._featured) return -1;
-      if (!a._featured && b._featured) return 1;
-      // Then by recent updates
-      return new Date(b.pushed_at) - new Date(a.pushed_at);
-    });
-}
-
-function applyUIFilters() {
-  const q = (searchEl.value || "").trim().toLowerCase();
-  const mode = filterEl.value;
-
-  const cards = Array.from(projectsGrid.querySelectorAll(".project"));
-  let visible = 0;
-
-  cards.forEach(card => {
-    const name = card.getAttribute("data-name") || "";
-    const lang = card.getAttribute("data-lang") || "";
-    const topics = card.getAttribute("data-topics") || "";
-    const matchesSearch = !q || name.includes(q) || lang.includes(q) || topics.includes(q);
-
-    let matchesMode = true;
-    if (mode === "featured") {
-      // featured = has a topic "featured" OR is in FEATURED_REPOS list (we add a data attribute)
-      matchesMode = card.hasAttribute("data-featured");
-    }
-
-    card.style.display = (matchesSearch && matchesMode) ? "" : "none";
-    if (card.style.display !== "none") visible++;
-  });
-
-  setStatus(`${visible} project(s) shown`);
-}
-
-function setSortMode(repos, mode) {
-  const copy = [...repos];
-  if (mode === "recent") {
-    copy.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
-  } else if (mode === "stars") {
-    copy.sort((a, b) => b.stargazers_count - a.stargazers_count);
-  }
-  // "all" and "featured" use default rank order (featured first, then recent)
-  return copy;
-}
-
-function renderRepos(repos) {
-  projectsGrid.innerHTML = "";
-  if (!repos.length) {
-    projectsGrid.innerHTML = `<div class="card">No repos found. Make sure your repos are public.</div>`;
-    return;
-  }
-
-  const featuredSet = new Set(FEATURED_REPOS.map(r => r.toLowerCase()));
-
-  const html = repos.map(r => {
-    const card = projectCard(r);
-    // tag featured cards
-    if (featuredSet.has(r.name.toLowerCase())) {
-      return card.replace('<article class="project"', '<article class="project" data-featured="true"');
-    }
-    return card;
-  }).join("");
-
-  projectsGrid.innerHTML = html;
-  applyUIFilters();
-}
-
-async function fetchRepos({ force = false } = {}) {
-  const cacheKey = `gh_repos_${USERNAME}`;
-  const cacheTtlMs = 10 * 60 * 1000; // 10 minutes
-
-  if (!force) {
-    const cached = localStorage.getItem(cacheKey);
-    if (cached) {
-      try {
-        const parsed = JSON.parse(cached);
-        if (Date.now() - parsed.savedAt < cacheTtlMs) {
-          setStatus("Loaded projects from cache.");
-          return parsed.data;
-        }
-      } catch {}
-    }
-  }
-
-  setStatus("Loading projects from GitHub…");
-
-  // topics require a special header
-  const res = await fetch(`https://api.github.com/users/${USERNAME}/repos?per_page=100&sort=updated`, {
-    headers: {
-      "Accept": "application/vnd.github+json",
-    }
-  });
-
-  if (!res.ok) {
-    throw new Error(`GitHub API error: ${res.status}`);
-  }
-
-  const data = await res.json();
-
-  localStorage.setItem(cacheKey, JSON.stringify({ savedAt: Date.now(), data }));
-  return data;
-}
-
-let allRepos = [];
-
-async function init() {
-  try {
-    const repos = await fetchRepos();
-    allRepos = rankRepos(repos);
-
-    const mode = filterEl.value;
-    const sorted = (mode === "all" || mode === "featured")
-      ? allRepos
-      : setSortMode(allRepos, mode);
-
-    renderRepos(sorted);
-    setStatus(`Loaded ${allRepos.length} repo(s).`);
-  } catch (err) {
-    setStatus("Couldn’t load projects from GitHub right now. (API rate limit or connection issue)");
-    projectsGrid.innerHTML = `
-      <div class="card">
-        <h3>Projects couldn’t load</h3>
-        <p class="muted">No worries — your portfolio still works. Try “Refresh” or check again later.</p>
-        <p class="muted small">${escapeHtml(String(err.message || err))}</p>
-        <div class="divider"></div>
-        <a class="btn btn-small" href="https://github.com/${USERNAME}?tab=repositories" target="_blank" rel="noreferrer">View Repos on GitHub</a>
+        <div class="card">
+          <h3>Quick Links</h3>
+          <ul class="links">
+            <li><a href="https://www.michelletrendsetter.com" target="_blank" rel="noreferrer">Website</a></li>
+            <li><a href="https://github.com/IloveChanel" target="_blank" rel="noreferrer">GitHub</a></li>
+            <!-- Add LinkedIn when ready -->
+            <!-- <li><a href="https://www.linkedin.com/in/YOURNAME" target="_blank" rel="noreferrer">LinkedIn</a></li> -->
+          </ul>
+          <div class="divider"></div>
+          <div style="text-align: center; margin-top: 1rem;">
+            <div style="display: inline-block; padding: 4px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #667eea 100%); background-size: 200% 200%; animation: shimmer 3s ease infinite; box-shadow: 0 0 20px rgba(102, 126, 234, 0.6), 0 0 40px rgba(118, 75, 162, 0.4);">
+              <img src="chanel.jpg" alt="Chanel, a beautiful Pomeranian" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid white; display: block;" />
+            </div>
+            <p class="muted small" style="font-style: italic; margin-top: 1rem;">
+              💜 My GitHub username honors Chanel, my beloved dog who passed away December 13th, 2024. 
+              The account is a tribute to her memory.
+            </p>
+          </div>
+        </div>
       </div>
-    `;
-  }
-}
+    </section>
 
-searchEl.addEventListener("input", applyUIFilters);
+    <section id="skills" class="section">
+      <div class="container">
+        <h2>Skills</h2>
+        <div class="pill-grid">
+          <span class="pill">JavaScript</span>
+          <span class="pill">HTML</span>
+          <span class="pill">CSS</span>
+          <span class="pill">Responsive Design</span>
+          <span class="pill">APIs</span>
+          <span class="pill">Git/GitHub</span>
+          <span class="pill">Node.js (foundations)</span>
+          <span class="pill">SQL (foundations)</span>
+          <span class="pill">Python (foundations)</span>
+          <span class="pill">Automation / Bots</span>
+          <span class="pill">AI Apps (learning + building)</span>
+          <span class="pill">UI/Visual Design</span>
+        </div>
+      </div>
+    </section>
 
-filterEl.addEventListener("change", () => {
-  if (!allRepos.length) return;
-  const mode = filterEl.value;
+    <section id="certs" class="section alt">
+      <div class="container">
+        <h2>Certificates</h2>
+        <ul class="certs">
+          <li><strong>Full-Stack Developer</strong> — IBM (recent)</li>
+          <li><strong>AI Engineering</strong> — IBM</li>
+          <li><strong>AI Agent Developer</strong> — Vanderbilt University</li>
+          <li><strong>Data Analytics</strong> — Google</li>
+          <li><strong>Digital Marketing</strong> — (Illinois program)</li>
+          <li><strong>Fundamentals of Digital Marketing</strong></li>
+          <li><strong>E-commerce</strong> — Google</li>
+        </ul>
+        <p class="muted small">
+          Tip: Add certificate links (Credential URL) later, or create a "Certificates" repo with PDFs/screenshots.
+        </p>
+      </div>
+    </section>
 
-  let reposToRender = allRepos;
-  if (mode === "recent" || mode === "stars") {
-    reposToRender = setSortMode(allRepos, mode);
-  }
+    <section id="contact" class="section">
+      <div class="container contact">
+        <div>
+          <h2>Let's Work Together</h2>
+          <p class="muted">Looking for a motivated developer who brings creativity and technical skills? Let's connect.</p>
+          <div class="contact-actions">
+            <a class="btn" href="mailto:mvanceproperties@gmail.com">Email Me</a>
+            <a class="btn btn-ghost" href="https://github.com/IloveChanel" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/michelle-vance" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+          
+          <div style="margin-top: 2rem;">
+            <p class="muted small">Share this portfolio on social media:</p>
+            <div class="contact-actions" style="margin-top: 0.5rem; flex-wrap: wrap;">
+              <button class="btn btn-small" id="shareBtn">📤 Share Anywhere</button>
+              <a class="btn btn-small btn-ghost" href="https://www.facebook.com/sharer/sharer.php?u=https://ilovechanel.github.io/gitportfolio" target="_blank" rel="noreferrer">Facebook</a>
+              <a class="btn btn-small btn-ghost" href="https://wa.me/?text=Check%20out%20Michelle%20Vance's%20developer%20portfolio%20-%20https://ilovechanel.github.io/gitportfolio" target="_blank" rel="noreferrer">WhatsApp</a>
+              <a class="btn btn-small btn-ghost" href="https://twitter.com/intent/tweet?text=Check%20out%20Michelle%20Vance's%20developer%20portfolio%20-%20Web%20Developer%20with%20AI%20skills&url=https://ilovechanel.github.io/gitportfolio" target="_blank" rel="noreferrer">X (Twitter)</a>
+              <a class="btn btn-small btn-ghost" href="https://www.linkedin.com/sharing/share-offsite/?url=https://ilovechanel.github.io/gitportfolio" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a class="btn btn-small btn-ghost" href="https://reddit.com/submit?url=https://ilovechanel.github.io/gitportfolio&title=Michelle%20Vance%20Developer%20Portfolio" target="_blank" rel="noreferrer">Reddit</a>
+              <a class="btn btn-small btn-ghost" href="https://t.me/share/url?url=https://ilovechanel.github.io/gitportfolio&text=Check%20out%20Michelle%20Vance's%20developer%20portfolio" target="_blank" rel="noreferrer">Telegram</a>
+              <a class="btn btn-small btn-ghost" href="sms:?&body=Check%20out%20this%20developer%20portfolio:%20https://ilovechanel.github.io/gitportfolio">SMS</a>
+              <a class="btn btn-small btn-ghost" href="mailto:?subject=Michelle%20Vance%20-%20Developer%20Portfolio&body=Check%20out%20this%20developer%20portfolio:%0A%0Ahttps://ilovechanel.github.io/gitportfolio%0A%0AMichelle%20is%20a%20web%20developer%20with%20AI%20and%20automation%20skills.">Email</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>What I'm seeking</h3>
+          <ul class="checklist">
+            <li>✅ Available immediately</li>
+            <li>Web Developer roles</li>
+            <li>Front-End Developer positions</li>
+            <li>Junior Full-Stack opportunities</li>
+            <li class="muted small">Long-term goal: AI Engineer</li>
+          </ul>
+          <div class="divider"></div>
+          <p class="muted small">Open to remote, hybrid, or in-office positions</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  renderRepos(reposToRender);
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Michelle Vance</span>
+      <span class="muted">Built with GitHub Pages</span>
+    </div>
+  </footer>
 
-  // If "featured" filter is selected, we enforce it via applyUIFilters()
-  applyUIFilters();
-});
-
-refreshBtn.addEventListener("click", async () => {
-  try {
-    const repos = await fetchRepos({ force: true });
-    allRepos = rankRepos(repos);
-    renderRepos(allRepos);
-    setStatus("Refreshed from GitHub.");
-  } catch (e) {
-    setStatus("Refresh failed. Try again in a minute.");
-  }
-});
-
-init();
+  <script src="script.js"></script>
+</body>
+</html>

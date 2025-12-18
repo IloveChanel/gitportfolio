@@ -2,9 +2,14 @@ const USERNAME = "IloveChanel";
 
 // Put your BEST repos here to show them first (exact repo names)
 const FEATURED_REPOS = [
-  // "michelle-vance-portfolio",
-  // "portfolio",
-  // "your-best-project",
+  "mvp-painting-site-website",
+  "gitportfolio",
+];
+
+// Repos to EXCLUDE from your portfolio
+const EXCLUDED_REPOS = [
+  "visual-voicemail-app",
+  "porfolio",
 ];
 
 const projectsGrid = document.getElementById("projectsGrid");
@@ -77,9 +82,11 @@ function projectCard(repo) {
 
 function rankRepos(repos) {
   const featuredSet = new Set(FEATURED_REPOS.map(r => r.toLowerCase()));
+  const excludedSet = new Set(EXCLUDED_REPOS.map(r => r.toLowerCase()));
 
   return repos
     .filter(r => !r.fork) // hide forks by default
+    .filter(r => !excludedSet.has(r.name.toLowerCase())) // hide excluded repos
     .map(r => ({
       ...r,
       _featured: featuredSet.has(r.name.toLowerCase()),
@@ -234,6 +241,39 @@ refreshBtn.addEventListener("click", async () => {
     setStatus("Refresh failed. Try again in a minute.");
   }
 });
+
+// Universal Share Button
+const shareBtn = document.getElementById("shareBtn");
+if (shareBtn) {
+  shareBtn.addEventListener("click", async () => {
+    const shareData = {
+      title: "Michelle Vance | Developer Portfolio",
+      text: "Check out Michelle Vance's developer portfolio - Web Developer with AI & automation skills",
+      url: window.location.href
+    };
+
+    try {
+      if (navigator.share) {
+        // Use native share (works on mobile & modern browsers)
+        await navigator.share(shareData);
+      } else {
+        // Fallback: copy to clipboard
+        await navigator.clipboard.writeText(shareData.url);
+        alert("Portfolio link copied to clipboard! 📋\n\nYou can now paste it anywhere:\n• Text messages\n• Social media\n• Email\n• Anywhere else");
+      }
+    } catch (err) {
+      // If sharing was cancelled or failed, copy to clipboard as backup
+      if (err.name !== "AbortError") {
+        try {
+          await navigator.clipboard.writeText(shareData.url);
+          alert("Link copied to clipboard! 📋");
+        } catch {
+          alert("Share failed. You can manually copy this link:\n" + shareData.url);
+        }
+      }
+    }
+  });
+}
 
 init();
 
