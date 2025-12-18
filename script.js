@@ -42,6 +42,17 @@ function escapeHtml(str = "") {
     .replaceAll("'", "&#039;");
 }
 
+function getLikes(repoName) {
+  const likes = JSON.parse(localStorage.getItem('projectLikes') || '{}');
+  return likes[repoName] || 0;
+}
+
+function setLikes(repoName, count) {
+  const likes = JSON.parse(localStorage.getItem('projectLikes') || '{}');
+  likes[repoName] = count;
+  localStorage.setItem('projectLikes', JSON.stringify(likes));
+}
+
 function projectCard(repo) {
   const name = escapeHtml(repo.name);
   const desc = escapeHtml(repo.description || "No description yet — add one in GitHub repo settings.");
@@ -52,6 +63,9 @@ function projectCard(repo) {
 
   const repoUrl = repo.html_url;
   const liveUrl = repo.homepage && repo.homepage.startsWith("http") ? repo.homepage : "";
+  const shareUrl = liveUrl || repoUrl;
+  
+  const likes = getLikes(repo.name);
 
   const liveBtn = liveUrl
     ? `<a class="btn btn-small btn-ghost" href="${liveUrl}" target="_blank" rel="noreferrer">Live Demo</a>`
@@ -61,7 +75,8 @@ function projectCard(repo) {
     <article class="project"
       data-name="${name.toLowerCase()}"
       data-lang="${(repo.language || "").toLowerCase()}"
-      data-topics="${(repo.topics || []).join(" ").toLowerCase()}">
+      data-topics="${(repo.topics || []).join(" ").toLowerCase()}"
+      data-repo-name="${escapeHtml(repo.name)}">
       <div>
         <h3>${name}</h3>
         <p>${desc}</p>
@@ -75,6 +90,12 @@ function projectCard(repo) {
       <div class="actions">
         <a class="btn btn-small" href="${repoUrl}" target="_blank" rel="noreferrer">Repo</a>
         ${liveBtn}
+        <button class="btn btn-small btn-ghost like-btn" data-repo="${escapeHtml(repo.name)}" title="Like this project">
+          👍 <span class="like-count">${likes}</span>
+        </button>
+        <button class="btn btn-small btn-ghost share-project-btn" data-url="${shareUrl}" data-name="${name}" title="Share this project">
+          📤 Share
+        </button>
       </div>
     </article>
   `;
@@ -274,6 +295,56 @@ if (shareBtn) {
     }
   });
 }
+
+// Like and Share buttons for individual projects
+document.addEventListener("click", async (e) => {
+  // Handle like button clicks
+  if (e.target.closest(".like-btn")) {
+    const btn = e.target.closest(".like-btn");
+    const repoName = btn.getAttribute("data-repo");
+    const countEl = btn.querySelector(".like-count");
+    
+    let currentLikes = getLikes(repoName);
+    currentLikes++;
+    setLikes(repoName, currentLikes);
+    countEl.textContent = currentLikes;
+    
+    // Visual feedback
+    btn.style.transform = "scale(1.2)";
+    setTimeout(() => btn.style.transform = "", 200);
+  }
+  
+  // Handle share project button clicks
+  if (e.target.closest(".share-project-btn")) {
+    const btn = e.target.closest(".share-project-btn");
+    const url = btn.getAttribute("data-url");
+    const name = btn.getAttribute("data-name");
+    
+    const shareData = {
+      title: `${name} - Michelle Vance`,
+      text: `Check out this project: ${name}`,
+      url: url
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(url);
+        alert("Project link copied! 📋\nShare it anywhere you like.");
+      }
+    } catch (err) {
+      if (err.name !== "AbortError") {
+        try {
+          await navigator.clipboard.writeText(url);
+          alert("Project link copied! 📋");
+        } catch {
+          alert("Link: " + url);
+        }
+      }
+    }
+  }
+});
 
 init();
 
