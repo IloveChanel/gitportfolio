@@ -2,9 +2,8 @@ const USERNAME = "IloveChanel";
 
 // Put your BEST repos here to show them first (exact repo names)
 const FEATURED_REPOS = [
-  // "michelle-vance-portfolio",
-  // "portfolio",
-  // "your-best-project",
+  "portfolio",
+  // Add more of your best projects here
 ];
 
 const projectsGrid = document.getElementById("projectsGrid");
@@ -173,7 +172,12 @@ async function fetchRepos({ force = false } = {}) {
     }
   });
 
-  if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+  if (!res.ok) {
+    if (res.status === 403) {
+      throw new Error("GitHub API rate limit reached. Try again in an hour.");
+    }
+    throw new Error(`GitHub API error: ${res.status}`);
+  }
 
   const data = await res.json();
   localStorage.setItem(cacheKey, JSON.stringify({ savedAt: Date.now(), data }));
@@ -214,10 +218,12 @@ filterEl.addEventListener("change", () => {
   if (!allRepos.length) return;
 
   const mode = filterEl.value;
-  let reposToRender = allRepos;
+  let reposToRender;
 
   if (mode === "recent" || mode === "stars") {
     reposToRender = setSortMode(allRepos, mode);
+  } else {
+    reposToRender = [...allRepos]; // Keep default ranking for "all" and "featured"
   }
 
   renderRepos(reposToRender);
