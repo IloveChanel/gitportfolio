@@ -191,7 +191,7 @@ input[type="search"]::placeholder{color:rgba(170,182,204,.7)}
   flex-direction: column;
   gap: 10px;
   flex: 1;
-  background: rgba(18,22,33,0.85);
+  background: rgba(18,22,33,0.55);
   padding: 14px;
   border-radius: 12px;
   backdrop-filter: blur(8px);
@@ -208,6 +208,15 @@ input[type="search"]::placeholder{color:rgba(170,182,204,.7)}
   border-radius: 999px;
 }
 .project .actions{margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; position: relative; z-index: 1;}
+
+.project.has-image .actions{
+  background: rgba(18,22,33,0.92);
+  padding: 12px;
+  border-radius: 10px;
+  margin: -4px;
+  margin-top: 8px;
+  border: 1px solid rgba(122,162,255,0.15);
+}
 .project .actions a{font-size:13px}
 
 .pill-grid{display:flex; gap:10px; flex-wrap:wrap}
