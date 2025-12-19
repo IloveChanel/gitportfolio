@@ -447,3 +447,5 @@ if (emailBtn) {
   });
 }
 
+// Initialize the portfolio
+init();
