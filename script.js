@@ -73,6 +73,16 @@ const statusEl = document.getElementById("status");
 const searchEl = document.getElementById("search");
 const filterEl = document.getElementById("filter");
 const refreshBtn = document.getElementById("refresh");
+const loadMoreBtn = document.getElementById("loadMoreBtn");
+const backToTopBtn = document.getElementById("backToTop");
+
+let isMobile = window.innerWidth <= 768;
+let visibleProjectCount = isMobile ? 6 : 999; // Show 6 on mobile, all on desktop
+let allRenderedProjects = [];
+
+window.addEventListener('resize', () => {
+  isMobile = window.innerWidth <= 768;
+});
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -221,6 +231,7 @@ function renderRepos(repos) {
   projectsGrid.innerHTML = "";
   if (!repos.length) {
     projectsGrid.innerHTML = `<div class="card">No repos found. Make sure your repos are public.</div>`;
+    loadMoreBtn.classList.add('hidden');
     return;
   }
 
@@ -235,7 +246,33 @@ function renderRepos(repos) {
   }).join("");
 
   projectsGrid.innerHTML = html;
+  allRenderedProjects = Array.from(projectsGrid.querySelectorAll(".project"));
+  
+  // Apply mobile load more if on mobile
+  if (isMobile && allRenderedProjects.length > visibleProjectCount) {
+    updateVisibleProjects();
+  } else {
+    loadMoreBtn.classList.add('hidden');
+  }
+  
   applyUIFilters();
+}
+
+function updateVisibleProjects() {
+  allRenderedProjects.forEach((project, index) => {
+    if (index < visibleProjectCount) {
+      project.style.display = '';
+    } else {
+      project.style.display = 'none';
+    }
+  });
+  
+  if (visibleProjectCount >= allRenderedProjects.length) {
+    loadMoreBtn.classList.add('hidden');
+  } else {
+    loadMoreBtn.classList.remove('hidden');
+    loadMoreBtn.textContent = `Load More Projects (${allRenderedProjects.length - visibleProjectCount} remaining)`;
+  }
 }
 
 async function fetchRepos({ force = false } = {}) {
@@ -450,3 +487,30 @@ if (emailBtn) {
 
 // Initialize the portfolio
 init();
+
+// Load More Button
+if (loadMoreBtn) {
+  loadMoreBtn.addEventListener('click', () => {
+    visibleProjectCount += 6;
+    updateVisibleProjects();
+    applyUIFilters();
+  });
+}
+
+// Back to Top Button
+if (backToTopBtn) {
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopBtn.classList.add('show');
+    } else {
+      backToTopBtn.classList.remove('show');
+    }
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
