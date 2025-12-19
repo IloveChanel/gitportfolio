@@ -29,6 +29,8 @@ const CUSTOM_HOMEPAGES = {
   "tax-calculator-cicd-pipeline": "https://ilovechanel.github.io/tax-calculator-cicd-pipeline/",
   "vftvk-Simple-Interest-Calculator": "https://ilovechanel.github.io/vftvk-Simple-Interest-Calculator/",
   "dealer_evaluation_backend": "https://ilovechanel.github.io/dealer_evaluation_backend/",
+  "LogisticsShippingRates": "https://ilovechanel.github.io/LogisticsShippingRates/",
+  "trendsetter-travel-website": "https://www.michelletrendsetter.com",
 };
 
 // Repos to EXCLUDE from your portfolio
