@@ -6,8 +6,6 @@ const FEATURED_REPOS = [
   "Travelrecommendation",
   "mvp-painting-site-website",
   "oakland-macomb-landing",
-  "expressBookReviews",
-  "e-plantShopping",
 ];
 
 // Background images for featured projects (add screenshots to images folder)
