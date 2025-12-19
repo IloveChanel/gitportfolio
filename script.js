@@ -10,10 +10,10 @@ const FEATURED_REPOS = [
 
 // Background images for featured projects (add screenshots to images folder)
 const PROJECT_IMAGES = {
-  "michelle-portfolio-website": "images/michelle-portfolio.jpg",
-  "Travelrecommendation": "images/travel-site.jpg",
+  "michelle-portfolio-website": "images/michelle_trendsetter.png",
+  "Travelrecommendation": "images/Tavel_recommendation.png",
   "mvp-painting-site-website": "images/mvp-painting.jpg",
-  "oakland-macomb-landing": "images/oakland-macomb.jpg",
+  "oakland-macomb-landing": "images/oakland_macomb_landing.png",
 };
 
 // Custom homepage URLs (Live Demo links)
