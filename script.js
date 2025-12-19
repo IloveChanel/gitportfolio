@@ -24,6 +24,7 @@ const CUSTOM_DESCRIPTIONS = {
   "dealer-evaluation-backend": "Backend API for dealer evaluation system. Node.js/Express backend with database integration for managing dealer ratings, reviews, and analytics.",
   "embedded-ai-project": "Embedded AI final project with HTML templates and static assets. Forked from IBM Developer Skills Network, Apache 2.0 licensed. Features AI/ML integration for web applications.",
   "github-final-project": "Introduction to Git and GitHub learning project with simple interest calculator. Forked from IBM Developer Skills Network. Includes shell scripts, Python code, contribution guidelines, and Apache 2.0 license.",
+  "porfolio": "Portfolio placeholder repository. Empty repo for future portfolio development.",
 };
 
 const projectsGrid = document.getElementById("projectsGrid");
