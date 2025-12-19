@@ -170,7 +170,7 @@ input[type="search"]::placeholder{color:rgba(170,182,204,.7)}
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 280px;
+  min-height: 320px;
 }
 
 .project.has-image::before{
@@ -180,7 +180,7 @@ input[type="search"]::placeholder{color:rgba(170,182,204,.7)}
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, rgba(11,13,16,0.75) 0%, rgba(11,13,16,0.92) 100%);
+  background: linear-gradient(180deg, rgba(11,13,16,0.35) 0%, rgba(11,13,16,0.65) 100%);
   z-index: 0;
 }
 
@@ -191,6 +191,11 @@ input[type="search"]::placeholder{color:rgba(170,182,204,.7)}
   flex-direction: column;
   gap: 10px;
   flex: 1;
+  background: rgba(18,22,33,0.85);
+  padding: 14px;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(122,162,255,0.25);
 }
 
 .project h3{margin:0; font-size:16px; letter-spacing:.1px; position: relative; z-index: 1;}
