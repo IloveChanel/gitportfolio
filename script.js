@@ -2,9 +2,19 @@ const USERNAME = "IloveChanel";
 
 // Put your BEST repos here to show them first (exact repo names)
 const FEATURED_REPOS = [
+  "michelle-portfolio-website",
+  "Travelrecommendation",
   "mvp-painting-site-website",
-  "gitportfolio",
+  "oakland-macomb-landing",
 ];
+
+// Background images for featured projects (add screenshots to your repo)
+const PROJECT_IMAGES = {
+  "michelle-portfolio-website": "michelle-portfolio.jpg",
+  "Travelrecommendation": "travel-site.jpg",
+  "mvp-painting-site-website": "mvp-painting.jpg",
+  "oakland-macomb-landing": "oakland-macomb.jpg",
+};
 
 // Repos to EXCLUDE from your portfolio
 const EXCLUDED_REPOS = [
@@ -91,18 +101,22 @@ function projectCard(repo) {
   const shareUrl = liveUrl || repoUrl;
   
   const likes = getLikes(repo.name);
+  const bgImage = PROJECT_IMAGES[repo.name];
+  const bgStyle = bgImage ? `style="background-image: url('${bgImage}');"` : "";
+  const hasImageClass = bgImage ? " has-image" : "";
 
   const liveBtn = liveUrl
     ? `<a class="btn btn-small btn-ghost" href="${liveUrl}" target="_blank" rel="noreferrer">Live Demo</a>`
     : "";
 
   return `
-    <article class="project"
+    <article class="project${hasImageClass}"
       data-name="${name.toLowerCase()}"
       data-lang="${(repo.language || "").toLowerCase()}"
       data-topics="${(repo.topics || []).join(" ").toLowerCase()}"
-      data-repo-name="${escapeHtml(repo.name)}">
-      <div>
+      data-repo-name="${escapeHtml(repo.name)}"
+      ${bgStyle}>
+      <div class="project-content">
         <h3>${name}</h3>
         <p>${desc}</p>
       </div>

@@ -162,17 +162,47 @@ input[type="search"]::placeholder{color:rgba(170,182,204,.7)}
   flex-direction:column;
   gap:10px;
   min-height: 180px;
+  position: relative;
+  overflow: hidden;
 }
-.project h3{margin:0; font-size:16px; letter-spacing:.1px}
-.project p{margin:0; color:var(--muted); font-size:14px; min-height: 42px}
-.meta{display:flex; gap:10px; flex-wrap:wrap; font-size:12px; color:var(--muted)}
+
+.project.has-image{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 280px;
+}
+
+.project.has-image::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(11,13,16,0.75) 0%, rgba(11,13,16,0.92) 100%);
+  z-index: 0;
+}
+
+.project-content{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.project h3{margin:0; font-size:16px; letter-spacing:.1px; position: relative; z-index: 1;}
+.project p{margin:0; color:var(--muted); font-size:14px; min-height: 42px; position: relative; z-index: 1;}
+.meta{display:flex; gap:10px; flex-wrap:wrap; font-size:12px; color:var(--muted); position: relative; z-index: 1;}
 .badge{
   border:1px solid rgba(29,36,51,.9);
   background: rgba(255,255,255,.04);
   padding:5px 8px;
   border-radius: 999px;
 }
-.project .actions{margin-top:auto; display:flex; gap:8px; flex-wrap:wrap}
+.project .actions{margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; position: relative; z-index: 1;}
 .project .actions a{font-size:13px}
 
 .pill-grid{display:flex; gap:10px; flex-wrap:wrap}
