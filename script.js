@@ -436,16 +436,15 @@ document.addEventListener("click", async (e) => {
 const emailBtn = document.getElementById("emailBtn");
 if (emailBtn) {
   emailBtn.addEventListener("click", function(e) {
-    // Let the mailto try to work first
-    setTimeout(() => {
-      // After a moment, also copy emails to clipboard as backup
-      const emails = "michelletrendsetters@gmail.com, sellitrealestate@yahoo.com";
-      navigator.clipboard.writeText(emails).then(() => {
-        console.log("Emails copied to clipboard as backup");
-      }).catch(() => {
-        console.log("Clipboard not available");
-      });
-    }, 100);
+    // Copy emails to clipboard as backup
+    const emails = "michelletrendsetters@gmail.com, sellitrealestate@yahoo.com";
+    navigator.clipboard.writeText(emails).then(() => {
+      // Show confirmation
+      alert("✅ Emails copied to clipboard!\n\n📧 michelletrendsetters@gmail.com\n📧 sellitrealestate@yahoo.com\n\nYou can paste them into your email app.");
+    }).catch(() => {
+      // If clipboard fails, show the emails
+      alert("📧 Contact emails:\n\nmichelletrendsetters@gmail.com\nsellitrealestate@yahoo.com");
+    });
   });
 }
 
