@@ -8,12 +8,12 @@ const FEATURED_REPOS = [
   "oakland-macomb-landing",
 ];
 
-// Background images for featured projects (add screenshots to your repo)
+// Background images for featured projects (add screenshots to images folder)
 const PROJECT_IMAGES = {
-  "michelle-portfolio-website": "michelle-portfolio.jpg",
-  "Travelrecommendation": "travel-site.jpg",
-  "mvp-painting-site-website": "mvp-painting.jpg",
-  "oakland-macomb-landing": "oakland-macomb.jpg",
+  "michelle-portfolio-website": "images/michelle-portfolio.jpg",
+  "Travelrecommendation": "images/travel-site.jpg",
+  "mvp-painting-site-website": "images/mvp-painting.jpg",
+  "oakland-macomb-landing": "images/oakland-macomb.jpg",
 };
 
 // Repos to EXCLUDE from your portfolio

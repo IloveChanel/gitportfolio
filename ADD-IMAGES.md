@@ -40,16 +40,17 @@ You need to add 4 screenshot images to this folder:
 
 ## Where to Place Images
 
-Save all 4 images in the **same folder** as index.html:
+Save all 4 images in the **images** folder:
 ```
 gitportfolio/
+  ├── images/
+  │   ├── michelle-portfolio.jpg  ← Add here
+  │   ├── travel-site.jpg         ← Add here
+  │   ├── mvp-painting.jpg        ← Add here
+  │   └── oakland-macomb.jpg      ← Add here
   ├── index.html
   ├── script.js
-  ├── styles.css
-  ├── michelle-portfolio.jpg  ← Add here
-  ├── travel-site.jpg         ← Add here
-  ├── mvp-painting.jpg        ← Add here
-  └── oakland-macomb.jpg      ← Add here
+  └── styles.css
 ```
 
 ## After Adding Images
