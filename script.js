@@ -17,14 +17,18 @@ const CUSTOM_DESCRIPTIONS = {
   "mvp-painting-site-website": "Professional painting contractor website for MVP Painting. Features service pages, contact forms, gallery, responsive design, and SEO optimization for Oakland and Macomb counties.",
   "gitportfolio": "Auto-updating developer portfolio that dynamically loads GitHub projects with search, filtering, and social sharing features. Built with vanilla JavaScript and GitHub API.",
   "gift-management-app": "Full-stack containerized gift management application with React frontend and Node.js backend. Deployed on Kubernetes and IBM Code Engine with MongoDB database, JWT authentication, and automated CI/CD.",
-  "shipping-rate-calculator": "Shipping rate calculation tool with Git CLI practice. Includes shell scripts for logistics calculations, contribution guidelines, and Apache 2.0 license.",
-  "tax-calculator": "Tax calculator web app with complete CI/CD pipeline using Tekton. Deployed on IBM Cloud Code Engine with Docker, Nginx, automated testing (Jasmine), and 6-stage deployment workflow.",
+  "LogisticsShippingRates": "Shipping rate calculation tool with Git CLI practice. Includes shell scripts for logistics calculations, contribution guidelines, and Apache 2.0 license.",
+  "tax-calculator-cicd-pipeline": "Tax calculator web app with complete CI/CD pipeline using Tekton. Deployed on IBM Cloud Code Engine with Docker, Nginx, automated testing (Jasmine), and 6-stage deployment workflow.",
   "book-review-api": "Node.js book review API with Express.js. Forked from IBM Developer Skills Network for final module project. Features RESTful endpoints, Apache 2.0 licensed.",
   "portfolio-website": "HTML/CSS/JavaScript portfolio website with modern design, interactive elements, and responsive layout. Includes project showcase and professional presentation.",
   "dealer-evaluation-backend": "Backend API for dealer evaluation system. Node.js/Express backend with database integration for managing dealer ratings, reviews, and analytics.",
   "embedded-ai-project": "Embedded AI final project with HTML templates and static assets. Forked from IBM Developer Skills Network, Apache 2.0 licensed. Features AI/ML integration for web applications.",
   "github-final-project": "Introduction to Git and GitHub learning project with simple interest calculator. Forked from IBM Developer Skills Network. Includes shell scripts, Python code, contribution guidelines, and Apache 2.0 license.",
   "porfolio": "Portfolio placeholder repository. Empty repo for future portfolio development.",
+  "Travelrecommendation": "3-page travel website featuring company information, team profiles, and searchable exotic destinations (beaches, temples, cities). Built with dynamic search functionality and JSON API integration.",
+  "oakland-macomb-landing": "Professional painting contractor website for MVP Painting serving Oakland & Macomb counties. Features service pages, contact forms, gallery, and responsive design.",
+  "michelle-portfolio-main": "Professional portfolio website for Michelle Vance - Web Designer & Developer specializing in Michigan businesses. Features AI chatbot, animated backgrounds, and conversion-optimized design.",
+  "michelle-portfolio-testing": "Testing repository for portfolio website development. Experimental features and design iterations for Michelle Vance's professional portfolio.",
 };
 
 const projectsGrid = document.getElementById("projectsGrid");
