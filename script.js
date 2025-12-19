@@ -19,6 +19,7 @@ const CUSTOM_DESCRIPTIONS = {
   "gift-management-app": "Full-stack containerized gift management application with React frontend and Node.js backend. Deployed on Kubernetes and IBM Code Engine with MongoDB database, JWT authentication, and automated CI/CD.",
   "shipping-rate-calculator": "Shipping rate calculation tool with Git CLI practice. Includes shell scripts for logistics calculations, contribution guidelines, and Apache 2.0 license.",
   "tax-calculator": "Tax calculator web app with complete CI/CD pipeline using Tekton. Deployed on IBM Cloud Code Engine with Docker, Nginx, automated testing (Jasmine), and 6-stage deployment workflow.",
+  "book-review-api": "Node.js book review API with Express.js. Forked from IBM Developer Skills Network for final module project. Features RESTful endpoints, Apache 2.0 licensed.",
 };
 
 const projectsGrid = document.getElementById("projectsGrid");
