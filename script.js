@@ -30,6 +30,11 @@ const CUSTOM_HOMEPAGES = {
 const EXCLUDED_REPOS = [
   "visual-voicemail-app",
   "porfolio",
+  "portfolio-website",
+  "michelle-portfolio-testing",
+  "michelle-portfolio-main",
+  "michelle-vance-portfolio",
+  "astro-platform-starter",
 ];
 
 // Custom descriptions for repos (fallback if GitHub description is empty)
