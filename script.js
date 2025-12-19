@@ -425,5 +425,20 @@ document.addEventListener("click", async (e) => {
   }
 });
 
-init();
+// Email button fallback - show emails if mailto doesn't work
+const emailBtn = document.getElementById("emailBtn");
+if (emailBtn) {
+  emailBtn.addEventListener("click", function(e) {
+    // Let the mailto try to work first
+    setTimeout(() => {
+      // After a moment, also copy emails to clipboard as backup
+      const emails = "michelletrendsetters@gmail.com, sellitrealestate@yahoo.com";
+      navigator.clipboard.writeText(emails).then(() => {
+        console.log("Emails copied to clipboard as backup");
+      }).catch(() => {
+        console.log("Clipboard not available");
+      });
+    }, 100);
+  });
+}
 
