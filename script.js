@@ -30,7 +30,7 @@ const CUSTOM_HOMEPAGES = {
   "vftvk-Simple-Interest-Calculator": "https://ilovechanel.github.io/vftvk-Simple-Interest-Calculator/",
   "dealer_evaluation_backend": "https://ilovechanel.github.io/dealer_evaluation_backend/",
   "LogisticsShippingRates": "https://ilovechanel.github.io/LogisticsShippingRates/",
-  "trendsetter-travel-website": "https://www.michelletrendsetter.com",
+  "trendsetter-travel-website": "https://ilovechanel.github.io/trendsetter-travel-website/",
 };
 
 // Repos to EXCLUDE from your portfolio
