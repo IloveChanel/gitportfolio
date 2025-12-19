@@ -12,6 +12,12 @@ const EXCLUDED_REPOS = [
   "porfolio",
 ];
 
+// Custom descriptions for repos (fallback if GitHub description is empty)
+const CUSTOM_DESCRIPTIONS = {
+  "mvp-painting-site-website": "3-page travel website featuring company information, team profiles, and searchable exotic destinations (beaches, temples, cities). Built with dynamic search functionality and JSON API integration.",
+  "gitportfolio": "Auto-updating developer portfolio that dynamically loads GitHub projects with search, filtering, and social sharing features. Built with vanilla JavaScript and GitHub API.",
+};
+
 const projectsGrid = document.getElementById("projectsGrid");
 const statusEl = document.getElementById("status");
 const searchEl = document.getElementById("search");
@@ -55,7 +61,8 @@ function setLikes(repoName, count) {
 
 function projectCard(repo) {
   const name = escapeHtml(repo.name);
-  const desc = escapeHtml(repo.description || "No description yet — add one in GitHub repo settings.");
+  const customDesc = CUSTOM_DESCRIPTIONS[repo.name];
+  const desc = escapeHtml(repo.description || customDesc || "No description yet — add one in GitHub repo settings.");
   const lang = repo.language ? `<span class="badge">${escapeHtml(repo.language)}</span>` : "";
   const stars = `<span class="badge">★ ${repo.stargazers_count}</span>`;
   const updated = `<span class="badge">Updated ${fmtDate(repo.pushed_at)}</span>`;
