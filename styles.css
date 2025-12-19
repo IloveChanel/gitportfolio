@@ -170,7 +170,7 @@ input[type="search"]::placeholder{color:rgba(170,182,204,.7)}
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 320px;
+  min-height: 180px;
 }
 
 .project.has-image::before{
