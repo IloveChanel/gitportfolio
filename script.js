@@ -321,6 +321,29 @@ if (shareBtn) {
   });
 }
 
+// Copy Link Button
+const copyLinkBtn = document.getElementById("copyLinkBtn");
+if (copyLinkBtn) {
+  copyLinkBtn.addEventListener("click", async () => {
+    const portfolioUrl = window.location.href;
+    
+    try {
+      await navigator.clipboard.writeText(portfolioUrl);
+      // Change button text temporarily for feedback
+      const originalText = copyLinkBtn.innerHTML;
+      copyLinkBtn.innerHTML = "✓ Copied!";
+      copyLinkBtn.style.backgroundColor = "#4ade80";
+      
+      setTimeout(() => {
+        copyLinkBtn.innerHTML = originalText;
+        copyLinkBtn.style.backgroundColor = "";
+      }, 2000);
+    } catch {
+      alert("Link copied:\n" + portfolioUrl);
+    }
+  });
+}
+
 // Like and Share buttons for individual projects
 document.addEventListener("click", async (e) => {
   // Handle like button clicks
